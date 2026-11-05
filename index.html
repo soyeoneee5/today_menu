@@ -72,6 +72,12 @@
 
     .brand-mark span { transform: rotate(7deg); }
 
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .month-picker {
       display: flex;
       align-items: center;
@@ -109,6 +115,195 @@
       border-color: var(--green);
       box-shadow: 0 0 0 4px rgba(56, 91, 63, .12);
     }
+
+    .auth-trigger,
+    .logout-button {
+      padding: 10px 17px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      color: #fff;
+      background: var(--green);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+
+    .auth-trigger:hover,
+    .logout-button:hover {
+      background: var(--green-deep);
+      box-shadow: 0 7px 18px rgba(56, 91, 63, .18);
+      transform: translateY(-1px);
+    }
+
+    .auth-trigger:focus-visible,
+    .logout-button:focus-visible,
+    .auth-submit:focus-visible,
+    .auth-tab:focus-visible,
+    .auth-close:focus-visible {
+      outline: 3px solid rgba(56, 91, 63, .24);
+      outline-offset: 3px;
+    }
+
+    .user-session {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .user-email {
+      max-width: 230px;
+      overflow: hidden;
+      color: var(--green-deep);
+      font-size: .9rem;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .logout-button {
+      color: var(--green);
+      background: transparent;
+    }
+
+    .logout-button:hover { color: #fff; }
+
+    .auth-dialog {
+      width: min(440px, calc(100% - 28px));
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 26px;
+      color: var(--ink);
+      background: var(--card);
+      box-shadow: 0 28px 90px rgba(24, 31, 23, .32);
+    }
+
+    .auth-dialog::backdrop {
+      background: rgba(24, 31, 23, .66);
+      backdrop-filter: blur(7px);
+    }
+
+    .auth-panel {
+      position: relative;
+      padding: 42px 42px 38px;
+    }
+
+    .auth-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      color: var(--muted);
+      background: #f0ebe1;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .auth-eyebrow {
+      margin-bottom: 7px;
+      color: var(--orange);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    .auth-title {
+      margin: 0 0 8px;
+      font-family: "Nanum Myeongjo", serif;
+      font-size: 2rem;
+      letter-spacing: -.05em;
+    }
+
+    .auth-description {
+      margin-bottom: 25px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      margin-bottom: 22px;
+      padding: 5px;
+      border-radius: 999px;
+      background: #eee9df;
+    }
+
+    .auth-tab {
+      padding: 9px 12px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .auth-tab[aria-selected="true"] {
+      color: var(--green-deep);
+      background: var(--card);
+      box-shadow: 0 3px 12px rgba(63, 49, 33, .09);
+      font-weight: 700;
+    }
+
+    .auth-form { display: grid; gap: 17px; }
+
+    .auth-field {
+      display: grid;
+      gap: 7px;
+      color: var(--green-deep);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .auth-field input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      outline: none;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+      font-weight: 400;
+    }
+
+    .auth-field input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(56, 91, 63, .1);
+    }
+
+    .auth-submit {
+      min-height: 49px;
+      margin-top: 3px;
+      border: 0;
+      border-radius: 13px;
+      color: #fff;
+      background: var(--green);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .auth-submit:disabled { opacity: .65; cursor: wait; }
+
+    .auth-message {
+      min-height: 24px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .86rem;
+      text-align: center;
+    }
+
+    .auth-message[data-state="error"] { color: #b34332; }
+    .auth-message[data-state="success"] { color: var(--green); }
 
     .hero {
       display: grid;
@@ -534,14 +729,22 @@
       .dialog-hero { grid-template-columns: 1fr; }
       .dialog-image { height: min(44vh, 360px); min-height: 260px; }
       .dialog-summary { padding: 36px 34px; }
+      .topbar { align-items: flex-start; }
+      .topbar-actions { align-items: flex-end; flex-direction: column-reverse; }
     }
 
     @media (max-width: 560px) {
       .page-shell { width: min(100% - 28px, 1160px); padding-top: 18px; }
       .topbar { align-items: flex-start; margin-bottom: 32px; }
+      .topbar-actions { gap: 8px; }
       .brand { font-size: .9rem; }
       .brand-mark { width: 34px; height: 34px; }
       .month-picker { align-items: flex-start; flex-direction: column; gap: 3px; }
+      .month-picker > span:first-child { display: none; }
+      .user-session { flex-direction: column; align-items: flex-end; gap: 4px; }
+      .user-email { max-width: 160px; font-size: .78rem; }
+      .auth-trigger, .logout-button { padding: 8px 14px; font-size: .86rem; }
+      .auth-panel { padding: 38px 24px 30px; }
       .hero { padding-bottom: 38px; }
       h1 { font-size: clamp(2.65rem, 16vw, 4.2rem); }
       .month-visual { min-height: 180px; }
@@ -569,12 +772,21 @@
         <span class="brand-mark" aria-hidden="true"><span>旬</span></span>
         오늘 뭐먹지?
       </div>
-      <label class="month-picker" for="monthSelect">
-        <span>제철 월 선택</span>
-        <span class="select-wrap">
-          <select id="monthSelect" aria-label="월 선택"></select>
-        </span>
-      </label>
+      <div class="topbar-actions">
+        <label class="month-picker" for="monthSelect">
+          <span>제철 월 선택</span>
+          <span class="select-wrap">
+            <select id="monthSelect" aria-label="월 선택"></select>
+          </span>
+        </label>
+        <div id="authArea">
+          <button id="authOpenButton" class="auth-trigger" type="button">로그인</button>
+          <div id="userSession" class="user-session" hidden>
+            <span id="userEmail" class="user-email"></span>
+            <button id="logoutButton" class="logout-button" type="button">로그아웃</button>
+          </div>
+        </div>
+      </div>
     </header>
 
     <section class="hero" aria-labelledby="heroTitle">
@@ -643,6 +855,32 @@
     </div>
   </dialog>
 
+  <dialog id="authDialog" class="auth-dialog" aria-labelledby="authTitle">
+    <div class="auth-panel">
+      <button id="authCloseButton" class="auth-close" type="button" aria-label="로그인 팝업 닫기">×</button>
+      <p class="auth-eyebrow">WELCOME TO THE TABLE</p>
+      <h2 id="authTitle" class="auth-title">다시 만나 반가워요</h2>
+      <p id="authDescription" class="auth-description">이메일과 비밀번호로 로그인하세요.</p>
+      <div class="auth-tabs" role="tablist" aria-label="인증 방식 선택">
+        <button id="loginTab" class="auth-tab" type="button" role="tab" aria-selected="true">로그인</button>
+        <button id="signupTab" class="auth-tab" type="button" role="tab" aria-selected="false">회원가입</button>
+      </div>
+      <form id="authForm" class="auth-form">
+        <label class="auth-field" for="authEmail">
+          이메일
+          <input id="authEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required />
+        </label>
+        <label class="auth-field" for="authPassword">
+          비밀번호
+          <input id="authPassword" name="password" type="password" autocomplete="current-password" placeholder="6자 이상 입력" minlength="6" required />
+        </label>
+        <button id="authSubmitButton" class="auth-submit" type="submit">로그인</button>
+        <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0"></script>
   <script>
     const monthSelect = document.querySelector('#monthSelect');
     const monthStamp = document.querySelector('#monthStamp');
@@ -662,7 +900,26 @@
     const dialogTip = document.querySelector('#dialogTip');
     const dialogCloseX = document.querySelector('#dialogCloseX');
     const dialogCloseButton = document.querySelector('#dialogCloseButton');
+    const authOpenButton = document.querySelector('#authOpenButton');
+    const userSession = document.querySelector('#userSession');
+    const userEmail = document.querySelector('#userEmail');
+    const logoutButton = document.querySelector('#logoutButton');
+    const authDialog = document.querySelector('#authDialog');
+    const authCloseButton = document.querySelector('#authCloseButton');
+    const authTitle = document.querySelector('#authTitle');
+    const authDescription = document.querySelector('#authDescription');
+    const loginTab = document.querySelector('#loginTab');
+    const signupTab = document.querySelector('#signupTab');
+    const authForm = document.querySelector('#authForm');
+    const authEmail = document.querySelector('#authEmail');
+    const authPassword = document.querySelector('#authPassword');
+    const authSubmitButton = document.querySelector('#authSubmitButton');
+    const authMessage = document.querySelector('#authMessage');
+    const SUPABASE_URL = 'https://jsfrobdiztevimattxme.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_8EXhZCYpMAHkca51REVY4w_MJtJcXRR';
+    const supabaseClient = window.supabase?.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
     let lastFocusedCard = null;
+    let authMode = 'login';
 
     const state = {
       data: null,
@@ -778,6 +1035,113 @@
       recipeDialog.close();
     }
 
+    function setAuthMode(mode) {
+      authMode = mode;
+      const isLogin = mode === 'login';
+      loginTab.setAttribute('aria-selected', String(isLogin));
+      signupTab.setAttribute('aria-selected', String(!isLogin));
+      authTitle.textContent = isLogin ? '다시 만나 반가워요' : '함께 식탁을 골라요';
+      authDescription.textContent = isLogin
+        ? '이메일과 비밀번호로 로그인하세요.'
+        : '이메일로 간단히 회원가입할 수 있어요.';
+      authSubmitButton.textContent = isLogin ? '로그인' : '회원가입';
+      authPassword.autocomplete = isLogin ? 'current-password' : 'new-password';
+      authMessage.textContent = '';
+      authMessage.dataset.state = '';
+    }
+
+    function openAuthDialog() {
+      setAuthMode('login');
+      authForm.reset();
+      authDialog.showModal();
+      authEmail.focus();
+    }
+
+    function closeAuthDialog() {
+      authDialog.close();
+    }
+
+    function renderAuthUser(user) {
+      const isSignedIn = Boolean(user?.email);
+      authOpenButton.hidden = isSignedIn;
+      userSession.hidden = !isSignedIn;
+      userEmail.textContent = isSignedIn ? user.email : '';
+      userEmail.title = isSignedIn ? user.email : '';
+    }
+
+    function friendlyAuthError(error) {
+      const message = error?.message || '';
+      if (/invalid login credentials/i.test(message)) return '이메일 또는 비밀번호를 확인해 주세요.';
+      if (/email not confirmed/i.test(message)) return '이메일 인증을 먼저 완료해 주세요.';
+      if (/user already registered/i.test(message)) return '이미 가입된 이메일이에요. 로그인해 주세요.';
+      if (/password should be at least/i.test(message)) return '비밀번호는 6자 이상 입력해 주세요.';
+      if (/rate limit/i.test(message)) return '요청이 너무 많아요. 잠시 후 다시 시도해 주세요.';
+      return message || '인증 중 문제가 생겼어요. 잠시 후 다시 시도해 주세요.';
+    }
+
+    async function handleAuthSubmit(event) {
+      event.preventDefault();
+      if (!supabaseClient) {
+        authMessage.textContent = '인증 모듈을 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.';
+        authMessage.dataset.state = 'error';
+        return;
+      }
+
+      const email = authEmail.value.trim();
+      const password = authPassword.value;
+      authSubmitButton.disabled = true;
+      authSubmitButton.textContent = authMode === 'login' ? '로그인 중…' : '가입 중…';
+      authMessage.textContent = '';
+      authMessage.dataset.state = '';
+
+      try {
+        if (authMode === 'login') {
+          const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          closeAuthDialog();
+        } else {
+          const { data, error } = await supabaseClient.auth.signUp({ email, password });
+          if (error) throw error;
+          if (data.session) {
+            closeAuthDialog();
+          } else {
+            authMessage.textContent = '가입 확인 메일을 보냈어요. 이메일 인증 후 로그인해 주세요.';
+            authMessage.dataset.state = 'success';
+            authPassword.value = '';
+          }
+        }
+      } catch (error) {
+        authMessage.textContent = friendlyAuthError(error);
+        authMessage.dataset.state = 'error';
+      } finally {
+        authSubmitButton.disabled = false;
+        authSubmitButton.textContent = authMode === 'login' ? '로그인' : '회원가입';
+      }
+    }
+
+    async function handleLogout() {
+      if (!supabaseClient) return;
+      logoutButton.disabled = true;
+      logoutButton.textContent = '로그아웃 중…';
+      const { error } = await supabaseClient.auth.signOut();
+      logoutButton.disabled = false;
+      logoutButton.textContent = '로그아웃';
+      if (error) console.error('로그아웃하지 못했습니다:', error);
+    }
+
+    async function initializeAuth() {
+      if (!supabaseClient) {
+        authOpenButton.disabled = true;
+        authOpenButton.title = '인증 모듈을 불러오지 못했습니다.';
+        return;
+      }
+      const { data } = await supabaseClient.auth.getSession();
+      renderAuthUser(data.session?.user ?? null);
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        renderAuthUser(session?.user ?? null);
+      });
+    }
+
     function withDirectionalParticle(word) {
       const lastCode = word.charCodeAt(word.length - 1);
       const jongseong = (lastCode - 0xAC00) % 28;
@@ -838,6 +1202,15 @@
     }
 
     monthSelect.addEventListener('change', event => changeMonth(Number(event.target.value)));
+    authOpenButton.addEventListener('click', openAuthDialog);
+    authCloseButton.addEventListener('click', closeAuthDialog);
+    loginTab.addEventListener('click', () => setAuthMode('login'));
+    signupTab.addEventListener('click', () => setAuthMode('signup'));
+    authForm.addEventListener('submit', handleAuthSubmit);
+    logoutButton.addEventListener('click', handleLogout);
+    authDialog.addEventListener('click', event => {
+      if (event.target === authDialog) closeAuthDialog();
+    });
     dialogCloseX.addEventListener('click', closeRecipeDialog);
     dialogCloseButton.addEventListener('click', closeRecipeDialog);
     recipeDialog.addEventListener('click', event => {
@@ -848,6 +1221,7 @@
     });
     setupMonthSelect();
     renderMonth();
+    initializeAuth();
     loadMenu();
   </script>
 </body>
